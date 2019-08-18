@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>微博发布</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .weibo {
+            width: 600px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            padding: 10px;
+        }
+        
+        .weibo-text {
+            width: 590px;
+            height: 140px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            resize: none;
+        }
+        
+        .weibo-text:focus {
+            border-color: #f60;
+        }
+        
+        .weibo-btn {
+            width: 80px;
+            height: 30px;
+            background-color: #f90;
+            color: #fff;
+            border: 0 none;
+            margin-top: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            outline: 0 none;
+        }
+        
+        .weibo-list {
+            padding-top: 10px;
+        }
+        
+        .weibo-list li {
+            font-size: 14px;
+            line-height: 30px;
+            border-bottom: 1px dotted #ccc;
+            overflow: hidden;
+        }
+        
+        .weibo-list li p {
+            float: left;
+        }
+        
+        .weibo-list li span {
+            float: right;
+            cursor: pointer;
+            margin-right: 10px
+        }
+        
+        .weibo-list li input {
+            height: 24px;
+            line-height: 24px;
+            width: 300px;
+            font-size: 14px;
+            border: 0 none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="weibo">
+        <textarea class="weibo-text"></textarea>
+        <input class="weibo-btn" value="发布" type="button">
+        <ul class="weibo-list">
+
+        </ul>
+    </div>
+</body>
+<script src="./index.js"></script>
+<script>
+    var text = document.querySelector('.weibo-text'),
+        btn = document.querySelector('.weibo-btn'),
+        ul = document.querySelector('.weibo-list');
+
+
+
+    var datas = [];
+    btn.onclick = function() {
+        let content = text.value;
+        if (content.trim().length === 0) {
+            alert('请输入内容再点击发布！');
+            return;
+        }
+        let time = hoye.getTime();
+        let id = hoye.getId();
+        let li = document.createElement('li');
+        li.innerHTML = '<p class="content">' + content + '</p><span  class="del id">删除</span>' +
+            '<span  class="time">' + time + '</span>';
+        ul.insertBefore(li, ul.children[0]);
+        text.value = '';
+
+
+        let obj = {
+            content: content,
+            id: id,
+            time: time
+        }
+        datas.unshift(obj);
+        let json_datas = JSON.stringify(datas);
+        localStorage.setItem('mydata', json_datas);
+    }
+</script>
+
+</html>
