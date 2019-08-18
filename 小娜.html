@@ -92,43 +92,47 @@
         ul = document.querySelector('.weibo-list');
 
 
-    let old = localStorage.getItem('mydata');
-    old = JSON.parse(old);
-    old = old || [];
-    old.forEach(function(e, i) {
-        let li = document.createElement('li');
+    let datas = localStorage.getItem('mydata'); //获取储存数据
+    datas = JSON.parse(datas); //转换格式
+    datas = datas || []; //如果没有值则赋值空数组
+    datas.forEach(function(e, i) { //遍历数组
+        let li = document.createElement('li'); //创建li
         li.innerHTML = '<p class="content">' + e.content + '</p><span  class="del" id="' + e.id + '">删除</span>' +
             '<span  class="time">' + e.time + '</span>';
         ul.appendChild(li);
     });
 
 
-
-    var datas = [];
     btn.onclick = function() {
         let content = text.value;
-        if (content.trim().length === 0) {
+        if (content.trim().length === 0) { //没内容不给发布
             alert('请输入内容再点击发布！');
             return;
         }
-        let time = hoye.getTime();
-        let id = hoye.getId();
-        let li = document.createElement('li');
+        let time = hoye.getTime(); //得到时间数据
+        let id = hoye.getId(); //得到id名
+        let li = document.createElement('li'); //创建li
         li.innerHTML = '<p class="content">' + content + '</p><span  class="del" id="' + id + '">删除</span>' +
             '<span  class="time">' + time + '</span>';
         ul.insertBefore(li, ul.children[0]);
         text.value = '';
 
 
-        let obj = {
+        let obj = { //创建对象
             content: content,
             id: id,
             time: time
         }
-        datas.unshift(obj);
-        let json_datas = JSON.stringify(datas);
-        localStorage.setItem('mydata', json_datas);
+        datas.unshift(obj); //储存到数据的数组中
+        let json_datas = JSON.stringify(datas); //转换成json格式方便储存
+        localStorage.setItem('mydata', json_datas); //储存到本地
     }
+
+    ul.addEventListener('click', function(e) {
+        if (e.target.classList.contains('del')) {
+            ul.removeChild(e.target.parentNode);
+        }
+    })
 </script>
 
 </html>`
