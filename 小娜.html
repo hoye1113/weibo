@@ -92,6 +92,17 @@
         ul = document.querySelector('.weibo-list');
 
 
+    let old = localStorage.getItem('mydata');
+    old = JSON.parse(old);
+    old = old || [];
+    old.forEach(function(e, i) {
+        let li = document.createElement('li');
+        li.innerHTML = '<p class="content">' + e.content + '</p><span  class="del" id="' + e.id + '">删除</span>' +
+            '<span  class="time">' + e.time + '</span>';
+        ul.appendChild(li);
+    });
+
+
 
     var datas = [];
     btn.onclick = function() {
@@ -103,7 +114,7 @@
         let time = hoye.getTime();
         let id = hoye.getId();
         let li = document.createElement('li');
-        li.innerHTML = '<p class="content">' + content + '</p><span  class="del id">删除</span>' +
+        li.innerHTML = '<p class="content">' + content + '</p><span  class="del" id="' + id + '">删除</span>' +
             '<span  class="time">' + time + '</span>';
         ul.insertBefore(li, ul.children[0]);
         text.value = '';
@@ -120,4 +131,4 @@
     }
 </script>
 
-</html>
+</html>`
