@@ -128,19 +128,7 @@
         localStorage.setItem('mydata', json_datas); //储存到本地
     }
 
-    ul.addEventListener('click', function(e) { //利用冒泡事件
-        if (e.target.classList.contains('del')) { //点击的是否是del类名的标签
-            ul.removeChild(e.target.parentNode); //移除该li标签
-            let id = e.target.id; //获取点击的标签id，我在删除span中增加了id属性
-            datas.forEach(function(e, i) {
-                if (e.id == id) { //寻找数组里的id是否匹配
-                    datas.splice(i, 1); //匹配成功则从该索引下标删除
-                }
-            })
-            let json = JSON.stringify(datas); //更新了值，所以重新覆盖
-            localStorage.setItem('mydata', json);
-        }
-    })
+    改了
 	
 	12314
 </script>
