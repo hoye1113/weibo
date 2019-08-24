@@ -13,3 +13,4 @@
 4.hoye.sixteenColor()得到一个随机的十六进制颜色
 
 5.hoye.rgbColor()得到一个随机的rgb颜色
+

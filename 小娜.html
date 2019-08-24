@@ -91,17 +91,16 @@
         btn = document.querySelector('.weibo-btn'),
         ul = document.querySelector('.weibo-list');
 
-
     let datas = localStorage.getItem('mydata'); //获取储存数据
     datas = JSON.parse(datas); //转换格式
     datas = datas || []; //如果没有值则赋值空数组
     datas.forEach(function(e) { //遍历数组
         let li = document.createElement('li'); //创建li
-        li.innerHTML = '<p class="content">' + e.content + '</p><span  class="del" id="' + e.id + '">删除</span>' +
+        li.innerHTML = '<p class="content">' + e.content + '</p><span  class="del" id="' +
+            e.id + '">删除</span>' +
             '<span  class="time">' + e.time + '</span>';
         ul.appendChild(li);
     });
-
 
     btn.onclick = function() {
         let content = text.value;
@@ -112,11 +111,11 @@
         let time = hoye.getTime(); //得到时间数据
         let id = hoye.getId(); //得到id名
         let li = document.createElement('li'); //创建li
-        li.innerHTML = '<p class="content">' + content + '</p><span  class="del" id="' + id + '">删除</span>' +
+        li.innerHTML = '<p class="content">' + content + '</p><span  class="del" id="' +
+            id + '">删除</span>' +
             '<span  class="time">' + time + '</span>';
         ul.insertBefore(li, ul.children[0]);
         text.value = '';
-
 
         let obj = { //创建对象
             content: content,
@@ -141,6 +140,8 @@
             localStorage.setItem('mydata', json);
         }
     })
+
+    //{///}
 </script>
 
 </html>`
